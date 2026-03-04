@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>原口慶篤×吉田憲治のコラボセミナー｜エラー動作の本質を突く</title>
     <style>
         * {
@@ -320,28 +320,167 @@
         
         @media (max-width: 768px) {
             .main-title {
-                font-size: 2rem;
+                font-size: 1.5rem;
+                line-height: 1.4;
             }
             
             .sub-title {
-                font-size: 1.2rem;
-            }
-            
-            .course-title {
                 font-size: 1.1rem;
             }
             
+            .course-title {
+                font-size: 1rem;
+            }
+            
             .main-content {
-                padding: 20px;
-                margin: 20px;
+                padding: 15px;
+                margin: 15px;
             }
             
             .instructor-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
             
             .info-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .seminar-info {
+                padding: 20px 15px;
+            }
+            
+            .curriculum-item {
+                padding: 20px 15px;
+            }
+            
+            .curriculum-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .curriculum-number {
+                margin-bottom: 10px;
+                margin-right: 0;
+            }
+            
+            .curriculum-duration {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .instructor-info {
+                padding: 20px 15px;
+            }
+            
+            .instructor-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .instructor-name-large {
+                font-size: 1.3rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .apply-btn {
+                font-size: 1rem;
+                padding: 12px 30px;
+                margin: 15px 0;
+            }
+            
+            .instructor-image {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .header {
+                padding: 15px 0;
+            }
+            
+            .collaboration {
+                font-size: 1rem;
+            }
+            
+            .main-title {
+                font-size: 1.3rem;
+            }
+            
+            .sub-title {
+                font-size: 1rem;
+            }
+            
+            .course-title {
+                font-size: 0.9rem;
+            }
+            
+            .main-content {
+                padding: 10px;
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .seminar-info {
+                padding: 15px 10px;
+            }
+            
+            .info-item {
+                padding: 10px;
+            }
+            
+            .info-value {
+                font-size: 1rem;
+            }
+            
+            .curriculum-item {
+                padding: 15px 10px;
+                margin-bottom: 15px;
+            }
+            
+            .curriculum-title {
+                font-size: 1.2rem;
+            }
+            
+            .curriculum-content {
+                font-size: 0.9rem;
+            }
+            
+            .instructor-info {
+                padding: 15px 10px;
+            }
+            
+            .instructor-name-large {
+                font-size: 1.2rem;
+            }
+            
+            .instructor-bio {
+                font-size: 0.9rem;
+            }
+            
+            .detail-content {
+                font-size: 0.9rem;
+            }
+            
+            .section-title {
+                font-size: 1.3rem;
+            }
+            
+            .apply-btn {
+                font-size: 0.9rem;
+                padding: 10px 25px;
+            }
+            
+            .instructor-image {
+                height: 250px;
             }
         }
     </style>
