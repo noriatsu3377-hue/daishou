@@ -275,11 +275,18 @@
       stroke-width: 2;
       fill: none;
       stroke-linecap: round;
+      stroke-dasharray: 400;
+      stroke-dashoffset: 400;
+      animation: drawBone 1.5s ease forwards;
     }
     .hero-body-svg .joint {
       fill: var(--accent-blue);
-      opacity: 0.7;
-      transition: all 0.5s ease;
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .hero-body-svg .joint.glow-in {
+      opacity: 0.85;
+      filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
     }
     .hero-body-svg .joint-glow {
       fill: none;
@@ -292,6 +299,9 @@
       stroke: var(--card-border);
       stroke-width: 2;
       fill: none;
+      stroke-dasharray: 200;
+      stroke-dashoffset: 200;
+      animation: drawBone 1s ease 0.3s forwards;
     }
     .hero-body-svg .label-text {
       font-size: 8px;
@@ -302,6 +312,13 @@
     @keyframes jointPulse {
       0%, 100% { opacity: 0; r: 6; }
       50% { opacity: 0.5; r: 14; }
+    }
+    @keyframes signalFlow {
+      to { stroke-dashoffset: -24; }
+    }
+    @keyframes glowPulse {
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(102, 126, 234, 0.4)); }
+      50% { filter: drop-shadow(0 0 14px rgba(102, 126, 234, 0.9)); }
     }
 
     /* ===== 3. PROBLEM ===== */
@@ -323,8 +340,9 @@
       transition: all 0.3s ease;
     }
     .problem-card:hover {
+      transform: translateY(-6px);
       border-color: var(--accent-blue);
-      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.08);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.12);
     }
     .problem-icon {
       width: 40px;
@@ -367,7 +385,8 @@
     .comparison-card.deep {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       color: #ffffff;
-      border: 1px solid rgba(102, 126, 234, 0.3);
+      border: 1px solid rgba(102, 126, 234, 0.4);
+      box-shadow: 0 8px 40px rgba(102, 126, 234, 0.15);
     }
 
     .comparison-badge {
@@ -448,10 +467,13 @@
     .motion-map-svg .joint.highlight {
       fill: var(--accent-blue);
       filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.7));
+      animation: glowPulse 2s ease-in-out infinite;
     }
     .motion-map-svg .bone.highlight {
       stroke: var(--accent-blue);
       stroke-width: 2.5;
+      stroke-dasharray: 8 4;
+      animation: signalFlow 1.5s linear infinite;
     }
     .motion-map-svg .head-shape {
       stroke: #dee2e6;
@@ -531,8 +553,9 @@
       transition: all 0.3s ease;
     }
     .phase-card:hover {
+      transform: translateY(-8px);
       border-color: var(--accent-blue);
-      box-shadow: 0 8px 30px rgba(102, 126, 234, 0.08);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.12);
     }
 
     .phase-number {
@@ -680,14 +703,14 @@
       position: relative;
       overflow: hidden;
       height: auto;
-      aspect-ratio: 4/3;
+      aspect-ratio: 1/1;
     }
     .instructor-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       object-position: center center;
-      background: #f1f3f5;
+      background: var(--bg-section);
       transition: transform 0.5s ease;
     }
     .instructor-card:hover .instructor-img {
@@ -697,14 +720,15 @@
       position: absolute;
       bottom: 16px;
       left: 16px;
-      background: rgba(0,0,0,0.7);
+      background: var(--gradient);
       backdrop-filter: blur(8px);
       color: #fff;
-      font-size: 0.75rem;
-      font-weight: 500;
+      font-size: 0.8rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
-      padding: 6px 16px;
+      padding: 8px 20px;
       border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
 
     .instructor-body {
@@ -717,8 +741,8 @@
       margin-bottom: 4px;
     }
     .instructor-name {
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.8rem;
+      font-weight: 900;
       margin-bottom: 16px;
     }
     .instructor-bio {
@@ -805,7 +829,7 @@
 
     /* ===== 10. FINAL CTA ===== */
     .final-cta {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+      background: var(--gradient);
       color: #ffffff;
       text-align: center;
       padding: 100px 24px;
@@ -819,7 +843,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.08) 0%, transparent 50%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
     }
     .final-cta .container { position: relative; z-index: 2; }
 
@@ -830,7 +854,7 @@
       line-height: 1.4;
     }
     .final-sub {
-      color: rgba(255,255,255,0.6);
+      color: rgba(255,255,255,0.85);
       font-size: 1.05rem;
       margin-bottom: 48px;
       max-width: 500px;
@@ -846,14 +870,14 @@
       margin: 0 auto 48px;
     }
     .final-info-item {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
       border-radius: 14px;
       padding: 20px 16px;
     }
     .final-info-label {
       font-size: 0.7rem;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.7);
       letter-spacing: 0.1em;
       margin-bottom: 6px;
     }
@@ -877,11 +901,11 @@
       box-shadow: 0 4px 30px rgba(255,255,255,0.15);
     }
     .final-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 40px rgba(255,255,255,0.25);
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 12px 40px rgba(255,255,255,0.3);
     }
     .final-note {
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.7);
       font-size: 0.85rem;
       margin-top: 20px;
     }
@@ -919,7 +943,7 @@
       .phase-grid { grid-template-columns: 1fr; gap: 16px; }
       .phase-grid::before { display: none; }
       .instructor-grid { grid-template-columns: 1fr; }
-      .instructor-img-wrap { aspect-ratio: 4/3; }
+      .instructor-img-wrap { aspect-ratio: 1/1; }
       .transform-grid {
         grid-template-columns: 1fr;
         gap: 16px;
@@ -936,7 +960,7 @@
       .problem-grid { grid-template-columns: 1fr; }
       .curriculum-card { padding: 28px 20px; }
       .curriculum-top { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .instructor-img-wrap { aspect-ratio: 4/3; }
+      .instructor-img-wrap { aspect-ratio: 1/1; }
       .instructor-body { padding: 24px 20px; }
       .final-info-grid { grid-template-columns: 1fr 1fr; }
       .cinematic-svg { width: 160px; height: 260px; }
@@ -986,15 +1010,15 @@
             <path d="M 120,275 L 108,345" class="bone"/>
             <path d="M 108,345 L 88,360 M 108,345 L 132,360" class="bone"/>
             <path d="M 102,95 L 135,155 L 140,210" class="bone"/>
-            <circle cx="105" cy="45" r="5" class="joint"/>
+            <circle cx="105" cy="45" r="5" class="joint" id="hero-j-head"/>
             <circle cx="105" cy="45" r="5" class="joint-glow" style="animation-delay:0s"/>
-            <circle cx="96" cy="130" r="4" class="joint"/>
+            <circle cx="96" cy="130" r="4" class="joint" id="hero-j-spine"/>
             <circle cx="96" cy="130" r="4" class="joint-glow" style="animation-delay:0.5s"/>
-            <circle cx="78" cy="200" r="5" class="joint"/>
+            <circle cx="78" cy="200" r="5" class="joint" id="hero-j-hip"/>
             <circle cx="78" cy="200" r="5" class="joint-glow" style="animation-delay:1s"/>
-            <circle cx="120" cy="275" r="4" class="joint"/>
+            <circle cx="120" cy="275" r="4" class="joint" id="hero-j-knee"/>
             <circle cx="120" cy="275" r="4" class="joint-glow" style="animation-delay:1.5s"/>
-            <circle cx="108" cy="345" r="4" class="joint"/>
+            <circle cx="108" cy="345" r="4" class="joint" id="hero-j-ankle"/>
             <circle cx="108" cy="345" r="4" class="joint-glow" style="animation-delay:2s"/>
             <text x="68" y="48" class="label-text">頭部</text>
             <text x="58" y="133" class="label-text">体幹</text>
@@ -1435,6 +1459,18 @@
         overlay.classList.add('done');
         sessionStorage.setItem('cinematic-done', '1');
       }, 4000);
+    })();
+
+    // ===== HERO JOINT SEQUENTIAL GLOW =====
+    (function() {
+      var heroJoints = ['hero-j-ankle', 'hero-j-knee', 'hero-j-hip', 'hero-j-spine', 'hero-j-head'];
+      var delay = sessionStorage.getItem('cinematic-done') ? 800 : 4200;
+      heroJoints.forEach(function(id, i) {
+        setTimeout(function() {
+          var el = document.getElementById(id);
+          if (el) el.classList.add('glow-in');
+        }, delay + i * 350);
+      });
     })();
 
     // ===== SCROLL REVEAL =====
